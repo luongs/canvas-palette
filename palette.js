@@ -7,6 +7,7 @@ let canvas = document.getElementById('canvasInAPerfectWorld');
 let clickX = new Array();
 let clickY = new Array();
 let clickDrag = new Array();
+let clickColor = new Array();
 let paint;
 
 canvas.onmousedown = function( e ){
@@ -36,20 +37,20 @@ canvas.onmouseleave = function( e ){
   paint = false;
 };
 
+let colorArray = ["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
+                  "#588c7e", "#f2e394", "#f2ae72", "#d96459"];
+
 function addClick(x, y, dragging){
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
+  clickColor.push(getRandomColor(colorArray));
 }
-
-let colorArray = ["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
-                  "#588c7e", "#f2e394", "#f2ae72", "#d96459"];
 
 function redraw(){
   // clears canvas
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
-  context.strokeStyle = getRandomColor(colorArray);
   context.lineJoin = "round";
   context.lineWidth = 5;
 
@@ -65,6 +66,7 @@ function redraw(){
 
     context.lineTo(clickX[i], clickY[i]);
     context.closePath();
+    context.strokeStyle = clickColor[i];
     context.stroke();
   }
 }
