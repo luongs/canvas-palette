@@ -42,11 +42,14 @@ function addClick(x, y, dragging){
   clickDrag.push(dragging);
 }
 
+let colorArray = ["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
+                  "#588c7e", "#f2e394", "#f2ae72", "#d96459"];
+
 function redraw(){
   // clears canvas
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
-  context.strokeStyle = "#df4b26";
+  context.strokeStyle = getRandomColor(colorArray);
   context.lineJoin = "round";
   context.lineWidth = 5;
 
@@ -64,6 +67,11 @@ function redraw(){
     context.closePath();
     context.stroke();
   }
+}
+
+function getRandomColor(colorArray){
+  let randIndex = Math.floor((Math.random() * colorArray.length));
+  return colorArray[randIndex];
 }
 
 }
