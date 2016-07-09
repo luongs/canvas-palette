@@ -4,6 +4,7 @@ function draw() {
 let context = document.getElementById('canvasInAPerfectWorld').
                getContext("2d");
 let canvas = document.getElementById('canvasInAPerfectWorld');
+let clearButton = document.getElementById('clearButton');
 let clickX = new Array();
 let clickY = new Array();
 let clickDrag = new Array();
@@ -37,6 +38,11 @@ canvas.onmouseleave = function( e ){
   paint = false;
 };
 
+clearButton.onclick = function( e ){
+  clearCanvas();
+  clearArrays();
+};
+
 let colorArray = ["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
                   "#588c7e", "#f2e394", "#f2ae72", "#d96459"];
 
@@ -47,12 +53,22 @@ function addClick(x, y, dragging){
   clickColor.push(getRandomColor(colorArray));
 }
 
-function redraw(){
-  // clears canvas
+function clearCanvas(){
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+}
+
+function clearArrays(){
+  clickX = [];
+  clickY = [];
+  clickDrag = [];
+  clickColor = [];
+}
+
+function redraw(){
+  clearCanvas();
 
   context.lineJoin = "round";
-  context.lineWidth = 5;
+  context.lineWidth = 8;
 
   for( let i=0; i< clickX.length; i++){
     context.beginPath();
