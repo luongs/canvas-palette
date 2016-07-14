@@ -5,10 +5,10 @@ let context = document.getElementById('canvasInAPerfectWorld').
                getContext("2d");
 let canvas = document.getElementById('canvasInAPerfectWorld');
 let clearButton = document.getElementById('clearButton');
+let colorButton = document.getElementById('colorButton');
 let paint;
 
 canvas.onmousedown = function( e ){
-  console.log("touch");
   let mouseX = e.pageX - this.offsetLeft;
   let mouseY = e.pageY - this.offsetTop;
 
@@ -40,6 +40,9 @@ clearButton.onclick = function( e ){
   clearArrays();
 };
 
+colorButton.onclick = function ( e ){
+  clearClickColorArray();
+};
 
 let clickColorArray = [];
 let clickX = new Array();
@@ -47,6 +50,7 @@ let clickY = new Array();
 let clickDrag = new Array();
 let clickColor = new Array();
 let colorArray = [];
+
 colorArray.push(["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
                   "#588c7e", "#f2e394", "#f2ae72", "#d96459"]);
 
@@ -56,9 +60,20 @@ function addClick(x, y, dragging){
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
-  clickColorArray.push(getRandomColor(colorArray))
+  clickColorArray = initClickColorArray(clickColorArray);
   clickColor.push(getRandomColor(clickColorArray[0]));
 }
+
+function initClickColorArray(clickColorArray){
+  if (clickColorArray.length === 0){
+    clickColorArray.push(getRandomColor(colorArray));
+  }
+  return clickColorArray;
+};
+
+function clearClickColorArray(){
+  clickColorArray = [];
+};
 
 function clearCanvas(){
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
