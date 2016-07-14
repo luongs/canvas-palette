@@ -51,10 +51,13 @@ let clickDrag = new Array();
 let clickColor = new Array();
 let colorArray = [];
 
+// Initialize different palettes for color array
 colorArray.push(["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
                   "#588c7e", "#f2e394", "#f2ae72", "#d96459"]);
 
 colorArray.push(["#deeaee", "#b1cbbb", "#eea29a", "#c94c4c"]);
+
+//TODO: Add more color palettes
 
 function addClick(x, y, dragging){
   clickX.push(x);
