@@ -5,13 +5,10 @@ let context = document.getElementById('canvasInAPerfectWorld').
                getContext("2d");
 let canvas = document.getElementById('canvasInAPerfectWorld');
 let clearButton = document.getElementById('clearButton');
-let clickX = new Array();
-let clickY = new Array();
-let clickDrag = new Array();
-let clickColor = new Array();
 let paint;
 
 canvas.onmousedown = function( e ){
+  console.log("touch");
   let mouseX = e.pageX - this.offsetLeft;
   let mouseY = e.pageY - this.offsetTop;
 
@@ -43,14 +40,24 @@ clearButton.onclick = function( e ){
   clearArrays();
 };
 
-let colorArray = ["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
-                  "#588c7e", "#f2e394", "#f2ae72", "#d96459"];
+
+let clickColorArray = [];
+let clickX = new Array();
+let clickY = new Array();
+let clickDrag = new Array();
+let clickColor = new Array();
+let colorArray = [];
+colorArray.push(["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
+                  "#588c7e", "#f2e394", "#f2ae72", "#d96459"]);
+
+colorArray.push(["#deeaee", "#b1cbbb", "#eea29a", "#c94c4c"]);
 
 function addClick(x, y, dragging){
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
-  clickColor.push(getRandomColor(colorArray));
+  clickColorArray.push(getRandomColor(colorArray))
+  clickColor.push(getRandomColor(clickColorArray[0]));
 }
 
 function clearCanvas(){
