@@ -44,6 +44,8 @@ let ccArrayIndex = 0; // index for clickColorArray
 let colorArray = [];
 
 //TODO: Add more color palettes
+//      Add eraser function
+//      Save canvas
 colorArray.push(["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
                   "#588c7e", "#f2e394", "#f2ae72", "#d96459"]);
 
