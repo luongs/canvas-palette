@@ -43,29 +43,49 @@ clearButton.onclick = function( e ){
 let ccArrayIndex = 0; // index for clickColorArray
 let colorArray = [];
 
-//TODO: Add more color palettes
-//      Add eraser function
-//      Save canvas
-colorArray.push(["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
-                  "#588c7e", "#f2e394", "#f2ae72", "#d96459"]);
-
-colorArray.push(["#deeaee", "#b1cbbb", "#eea29a", "#c94c4c"]);
+colorArray = initColorArray(colorArray);
 
 colorButton.onclick = function ( e ){
   ccArrayIndex = incrementArrayIndex(ccArrayIndex, colorArray);
 };
+
 
 let clickX = new Array();
 let clickY = new Array();
 let clickDrag = new Array();
 let clickColor = new Array();
 
+//TODO: Add eraser function
+//      Save canvas
+//      Display color combos on the side
 
 function addClick(x, y, dragging){
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
   clickColor.push(getRandomColor(colorArray[ccArrayIndex]));
+}
+
+function initColorArray(colorArray){
+
+  colorArray.push(['#ffffff', '#84dcc6', '#a5ffd6', '#ffa69e', '#ff686b']);
+
+  colorArray.push(['#ed6a5a', '#f4f1bb', '#9bc1bc', '#5ca4a9', '#e6ebe0']);
+
+  colorArray.push(['#f0b67f', '#fe5f55', '#d6d1b1', '#c7efcf', '#eef5db']);
+
+  colorArray.push(['#50514f', '#f25f5c', '#ffe066', '#247ba0', '#70c1b3']);
+  colorArray.push(['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654']);
+
+  colorArray.push(['#E71D36', '#2EC4B6', '#EFFFE9', '#011627']);
+
+  colorArray.push(["#96ceb4", "#ffeead", "ffcc5c", "#ff6f69",
+      "#588c7e", "#f2e394", "#f2ae72", "#d96459"]);
+
+  colorArray.push(['#D7FFF1', '#8CD790', '#77AF9C', '#285943'])
+
+  colorArray.push(['#d4dfe6', '#8ec0e4', '#cadbe9', '#6aafe6']);
+  return colorArray;
 }
 
 // implement circular array
