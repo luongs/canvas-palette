@@ -6,3 +6,7 @@
   font-size: 2em;
   cursor: pointer;
 }
+
+canvas:active {
+  cursor: default;
+}
