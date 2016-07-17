@@ -52,7 +52,6 @@ colorButton.onclick = function ( e ){
 
 eraserButton.onclick = function( e ){
   isEraser = true;
-  console.log("Click");
 };
 
 saveButton.onclick = function( e ){
