@@ -6,6 +6,7 @@ let context = document.getElementById('canvasInAPerfectWorld').
 let canvas = document.getElementById('canvasInAPerfectWorld');
 let clearButton = document.getElementById('clearButton');
 let colorButton = document.getElementById('colorButton');
+let saveButton = document.getElementById('saveButton');
 let eraserButton = document.getElementById('eraserButton');
 let paint;
 let isEraser;
@@ -39,35 +40,38 @@ canvas.onmouseleave = function( e ){
   paint = false;
 };
 
+let ccArrayIndex = 0; // index for clickColorArray
+let colorArray = [];
+
+// Functions called on startup
+colorArray = initColorArray(colorArray);
+fillColorSquares(colorArray, ccArrayIndex);
+
+colorButton.onclick = function ( e ){
+  ccArrayIndex = incrementArrayIndex(ccArrayIndex, colorArray);
+  isEraser = false;
+  fillColorSquares(colorArray, ccArrayIndex);
+};
+
+eraserButton.onclick = function( e ){
+  isEraser = true;
+};
+
+saveButton.onclick = function( e ){
+  let link = document.getElementById('saveAs');
+  link.href = canvas.toDataURL("image/png");
+  link.download = 'palettePicture.png';
+};
+
 clearButton.onclick = function( e ){
   clearCanvas();
   clearArrays();
 };
 
-let ccArrayIndex = 0; // index for clickColorArray
-let colorArray = [];
-
-colorArray = initColorArray(colorArray);
-
-colorButton.onclick = function ( e ){
-  ccArrayIndex = incrementArrayIndex(ccArrayIndex, colorArray);
-  isEraser = false;
-};
-
-eraserButton.onclick = function( e ){
-  isEraser = true;
-  console.log("Click");
-};
-
-
 let clickX = new Array();
 let clickY = new Array();
 let clickDrag = new Array();
 let clickColor = new Array();
-
-//TODO:
-//      Save canvas
-//      Display color combos on the side
 
 function addClick(x, y, dragging, isEraser){
   let color = '';
@@ -103,6 +107,26 @@ function initColorArray(colorArray){
 
   colorArray.push(['#d4dfe6', '#8ec0e4', '#cadbe9', '#6aafe6']);
   return colorArray;
+}
+
+
+function fillColorSquares(colorArray, index){
+  let MAX_SQUARES = 8;
+  let WHITE = "#ffffff";
+  let arrSize = colorArray[index].length;
+  let curColor = WHITE;
+
+  for (let i=0; i<MAX_SQUARES; i++){
+    if (i<arrSize){
+      curColor = colorArray[index][i];
+      document.getElementById("colorSquare"+i).style.color = curColor;
+      document.getElementById("colorSquare"+i).title = curColor;
+    }
+    else{
+      document.getElementById("colorSquare"+i).style.color = WHITE;
+      document.getElementById("colorSquare"+i).title = WHITE;
+    }
+  }
 }
 
 // implement circular array

@@ -7,6 +7,14 @@
   cursor: pointer;
 }
 
+.palette a{
+  color: black;
+}
+
+.palette span{
+  margin-left: 10em;
+}
 canvas:active {
   cursor: default;
 }
+
