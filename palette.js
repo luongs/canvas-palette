@@ -172,8 +172,8 @@ function draw() {
     if (undoNestedArray.length > 0){
       let topUndoArr = undoNestedArray.pop();
       for (let i=0; i<topUndoArr.length; i=i+2){
-        let x = topUndoArr[i];
-        let y = topUndoArr[i+1];
+        const x = topUndoArr[i];
+        const y = topUndoArr[i+1];
         addClick(x, y, true, true);
         redraw();
       }
